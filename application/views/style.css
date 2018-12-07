@@ -1,0 +1,223 @@
+
+.menu{
+	clear: left;         /*====== Top menu =====*/
+	font-size: 14px;
+
+}
+
+ul.menu {
+    list-style-type: none;  
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    margin-bottom: 5px;
+}
+
+li.tmenu, li.dropdown {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+
+
+li.tmenu a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.tmenu a:hover,li.mant a:hover, .dropdown:hover .dropbtn {
+    background-color: #ffff33;
+    color: black;
+}
+
+li.dropdown {
+    display: inline-block;
+    float: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;                    
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #bfbfbf}  
+
+.dropdown:hover .dropdown-content {
+    display: block;				/* END topmenu  */
+}
+
+
+.himg{
+    /* Header img */
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 20%;
+	/*background: linear-gradient(to right, #f0f000 , white);*/
+}
+
+img{
+    /* Header img */
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+
+a {
+	display: block;
+   text-align: center;
+   text-decoration: none;
+   color:black;
+}
+
+
+.hsearch{
+
+	padding-top: 25px;    /*Header search bar*/
+}
+
+ul.sidemenu {
+
+	list-style-type: none;  
+	padding: 0px;
+	margin: 0px;
+
+}
+
+
+ul.sidemenu li button{
+
+	display: block;
+	
+	background-color:#e6e6e6;
+	width: 175px;
+	color: black;
+	font-size: 16px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	text-align: center;
+	
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	cursor: pointer;
+	
+	//font-family: "Century Gothic";
+	
+
+}
+
+ul.sidemenu li button:hover{
+
+	background-color: white;
+	border: 1px solid #e6e6e6;
+	color: black;
+
+}
+  /*=======================================CSS FOR TABLES=================================*/
+html {
+	font-family: "Century Gothic";
+	text-align: center;
+	}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	font-family: "Century Gothic";
+	margin-top: 5px;
+	}
+
+
+th {
+	text-align: center;
+	padding: 5px;
+	}
+
+td {
+	text-align: left;
+	padding: 5px;
+	}
+
+	
+tr:nth-of-type(even) {
+    		background: white;
+			}
+
+tr:nth-of-type(odd) {
+    		background: #e6e6e6;
+			}
+
+
+th{
+	background-color: black;
+	color: white;	
+	}
+
+/*========================= PAGE BORDER =============================*/
+
+#page {
+   background: #009de0;
+   overflow: 100%;
+
+	/*#f0f000 amarillo EPA */
+}
+
+#margin {
+   background: white;
+   height: 100%;
+   margin: 5px;
+}
+
+/*=================================HYPERLINKS=========================================*/
+
+/*Forms*/
+
+form{
+	text-align: center;
+}
+
+input[type=text],input[type=number],input[type=time],input[type=password], select, [type=date], [type=file] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type=submit],input[type=button], [type=file], button {
+    background-color: #8b1138;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+
+input[type=submit]:hover {
+    background-color: #8b1145;
+}
+
+//#4d88ff; azul encabezados
+//#e6e6e6  gris
