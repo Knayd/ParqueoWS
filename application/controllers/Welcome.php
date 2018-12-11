@@ -13,35 +13,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('cargar_archivo');
 	}
 
-	//Example functions
-	public function crudeditarusuario(){
-		$this->load->model('MetodosBd');
-		
-		$id= $this->input->post('id');
-		$correo = $this->input->post('correo');
-		$clave = $this->input->post('clave');
-		$nivel = $this->input->post('nivel');
-		$data = $this->MetodosBd->crud_editarusuario($id,$correo,$clave,$nivel);
-
+	public function hola()
+	{
+		$this->load->view('saludo');
 	}
-
-	public function resgitrarasistencia(){
-
-		date_default_timezone_set('America/El_Salvador');
-		$this->load->model('MetodosBd');
-
-		$json = json_decode(file_get_contents('php://input'), true);
-
-		$carnetFk = $json['carnetFk'];
-		$idAulaFk = $json['idAulaFk'];
-		$idMateriaFk = $json['idMateriaFk'];
-
-		$data = $this->MetodosBd->registrarAsistencia($carnetFk,$idAulaFk,$idMateriaFk);
-
-		echo json_encode($data);
-	}
-	//===============================
-
 
 	//Here's where the actual methods start
 
@@ -57,7 +32,16 @@ class Welcome extends CI_Controller {
 		$nivel = $json['nivel'];
 		$pass = $json['pass'];
 
-		$data = $this->MetodosBd->crud_agregar_usuario($correo,$nivel);
+		$check = $this->MetodosBd->usuario_existe($correo);
+		if($check==true){
+			$mensaje = array('mensaje' => "El usuario ya existe" );
+			echo json_encode($mensaje);
+			return;
+		}
+
+		$idNivel = $this->MetodosBd->get_nivelid_by_name($nivel);
+
+		$data = $this->MetodosBd->crud_agregar_usuario($correo,$idNivel[0]['id_nivel']);
 
 		$apiKey="AIzaSyDUkOKeyJguMLnIWYMdRdR96bYCbgOeRCo";
 
@@ -69,7 +53,9 @@ class Welcome extends CI_Controller {
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS,"email=$correo&password=$pass&returnSecureToken=true");
 		$response = curl_exec($ch);
-		echo $response;
+
+		$mensaje = array('mensaje' => "Usuario agregado con exito." );
+		echo json_encode($mensaje);
 	}
 
 	public function checklogin(){
@@ -116,10 +102,6 @@ class Welcome extends CI_Controller {
 		date_default_timezone_set('America/El_Salvador');
 		$this->load->model('MetodosBd');
 
-		// $json = json_decode(file_get_contents('php://input'), true);
-
-		// $placa = $json['placa'];
-
 		$placa = $this->input->post('placa');
 		$docente = $this->input->post('docente');
 		$horario = $this->input->post('horario');
@@ -139,11 +121,15 @@ class Welcome extends CI_Controller {
 		$json = json_decode(file_get_contents('php://input'), true);
 
 		$placa = $json['placa'];
+		$comentario = $json['comentario'];
+		$tipo = $json['tipo'];
 		$fecha = date("Y-m-d");
 		$hora = date("H:i");
-		$idParqueo = $json['parqueo'];
+		$nombreParqueo = $json['parqueo'];
 
-		$data = $this->MetodosBd->registrar_parqueo($placa,$fecha,$hora,$idParqueo);
+		$idParqueo = $this->MetodosBd->get_parqueoid_by_name($nombreParqueo);
+
+		$data = $this->MetodosBd->registrar_parqueo($placa,$fecha,$hora,$idParqueo[0]['id_parqueo'],$comentario,$tipo);
 
 		echo json_encode($data);
 	}
@@ -163,12 +149,23 @@ class Welcome extends CI_Controller {
 
 		$json = json_decode(file_get_contents('php://input'), true);
 
-		$idParqueo = $json['idParqueo'];
+		$parqueo = $json['parqueo'];
 		$motivoReservacion = $json['motivoReservacion'];
 		$cantidadReservada = $json['cantidadReservada'];
 
-		$data = $this->MetodosBd->reservar($idParqueo, $motivoReservacion, $cantidadReservada);
-		// echo json_encode($data);
+		$idParqueo = $this->MetodosBd->get_parqueoid_by_name($parqueo);
+
+		$flag = $this->MetodosBd->validar_cantidad_reservar($idParqueo[0]['id_parqueo'], $cantidadReservada);
+
+		 if ($flag[0]['disponibles'] >= $cantidadReservada){
+		 	$data = $this->MetodosBd->reservar($idParqueo[0]['id_parqueo'], $motivoReservacion, $cantidadReservada);
+		 	$mensaje = array('mensaje' => "Reservacion creada");
+		 } else {
+		 	$mensaje = array('mensaje' => "La cantidad no es valida");
+		 }
+
+		// $data = $this->MetodosBd->reservar($idParqueo[0]['id_parqueo'], $motivoReservacion, $cantidadReservada);
+		echo json_encode($mensaje);
 	}
 
 	public function getparqueoslist(){
@@ -190,6 +187,18 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->get_registro_by_placa($placa);
 		echo json_encode($data);
 	}
+
+
+	public function getniveles(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->get_niveles();
+		echo json_encode($data);
+	}
+
+
 
 
 }

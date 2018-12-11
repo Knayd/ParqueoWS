@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 	<title>Cargar archivo</title>
+	<style> <?php include "style.css"; ?> </style>
 <?php
 
 //Carga de la librearía de excel y el modelo para guardar los datos
@@ -128,7 +129,7 @@ else
 		$idParqueo = $registro->idParqueo['valor'];
 		$ciclo = $registro->ciclo['valor'];
 
-		$url = "http://192.168.0.31:8080/etps1/ProyectoParqueo/welcome/agregarplaca";
+		$url = "http://localhost:8080/etps1/ProyectoParqueo/welcome/agregarplaca";
 
 		//Se inicia Curl en el servidor especificado
 		$ch = curl_init($url);
