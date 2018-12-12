@@ -102,5 +102,14 @@
 
 			echo "Registro actualizado correctamente";
 		}
+
+		function crud_listar_edificio() {
+			$query = $this->db->query("SELECT * from tbledificio");
+			return $query->result_array();
+		}
+		function crud_eliminar_edificio($id) {
+			$query = $this->db->query("DELETE from tbledificio where id_edificio=$id");
+			echo "Registro eliminado correctamente";
+		}
 	}
 ?>
