@@ -200,6 +200,28 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function crud_agregar_edificio(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('txtNombreEdificio');
+		$nombreCorto = $this->input->post('txtNombreCortoEdificio');
+
+		$data = $this->MetodosBd->crud_agregar_edificio($nombre, $nombreCorto);
+	}
+
+	public function crud_actualizar_edificio(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$id = $this->input->post('idEdificio');
+		$nombre = $this->input->post('txtNombreEdificio');
+		$nombreCorto = $this->input->post('txtNombreCortoEdificio');
+
+		$data = $this->MetodosBd->crud_actualizar_edificio($id,$nombre, $nombreCorto);
+	}
 
 
 

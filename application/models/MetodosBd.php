@@ -91,5 +91,16 @@
 				return false;
 			} 
 		}
+
+		function crud_agregar_edificio($nombreEdificio, $nombreCortoEdificio) {
+			$query = $this->db->query("INSERT into tbledificio values (NULL, '$nombreEdificio', '$nombreCortoEdificio' )");
+			echo "Registro ingresado correctamente";
+		}
+
+		function crud_actualizar_edificio($id,$nombreEdificio, $nombreCortoEdificio) {
+			$query = $this->db->query("UPDATE tbledificio set  nombre_edificio='$nombreEdificio', nombre_corto_edificio='$nombreCortoEdificio' where id_edificio=$id ");
+
+			echo "Registro actualizado correctamente";
+		}
 	}
 ?>
