@@ -109,8 +109,9 @@ class Welcome extends CI_Controller {
 		$horario = $this->input->post('horario');
 		$idParqueo = $this->input->post('idParqueo');
 		$ciclo = $this->input->post('ciclo');
+		$tipo = $this->input->post('tipo');
 
-		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo);
+		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
 
 		echo json_encode($data);
 	}

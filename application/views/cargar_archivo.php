@@ -78,7 +78,7 @@ else
 	echo "<table border='1'>";
 
 	//Imprime encabezados
-	echo "<tr><th>Placa</th><th>Nombre Docente</th><th>Horario</th><th>Id Parqueo</th><th>Ciclo</th></tr>";
+	echo "<tr><th>Placa</th><th>Nombre Docente</th><th>Horario</th><th>Id Parqueo</th><th>Ciclo</th><th>Tipo</th></tr>";
 
 	//Comienza en 2 para que no tome en cuenta los encabezados;
 	for ($i=2; $i<=$row; $i++)
@@ -116,6 +116,9 @@ else
 				case 5:
 				$registro->ciclo =  array('celda' => ($chars[$j].$i),'valor'=> $cleanVar );
 					break;
+				case 6:
+				$registro->tipo =  array('celda' => ($chars[$j].$i),'valor'=> $cleanVar );
+					break;
 			}
 		}
 		//Inserta dentro de un array los diferentes objetos creados.
@@ -128,6 +131,7 @@ else
 		$horario =  $registro->horario['valor'];
 		$idParqueo = $registro->idParqueo['valor'];
 		$ciclo = $registro->ciclo['valor'];
+		$tipo = $registro->tipo['valor'];
 
 		$url = "http://localhost:8080/etps1/ProyectoParqueo/welcome/agregarplaca";
 
@@ -135,7 +139,7 @@ else
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS,"placa=$placa&docente=$docente&horario=$horario&idParqueo=$idParqueo&ciclo=$ciclo");
+		curl_setopt($ch, CURLOPT_POSTFIELDS,"placa=$placa&docente=$docente&horario=$horario&idParqueo=$idParqueo&ciclo=$ciclo&tipo=$tipo");
 		$response = curl_exec($ch);
 		$array = json_decode($response,true); //True convierte el json en array asociativo
 		print_r($array);

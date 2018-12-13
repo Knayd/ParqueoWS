@@ -15,8 +15,8 @@
 			return $query->result_array();
 		}
 
-		function insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo) {
-			$query = $this->db->query("INSERT into tblplaca values ('$placa','$docente', '$horario',$idParqueo,'$ciclo')");
+		function insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo) {
+			$query = $this->db->query("INSERT into tblplaca values ('$placa','$docente', '$horario',$idParqueo,'$ciclo','$tipo')");
 		}
 		function registrar_parqueo($placa,$fecha,$hora,$idParqueo,$comentario,$tipo) {
 

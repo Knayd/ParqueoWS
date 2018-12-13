@@ -8,6 +8,7 @@ class registroExcel {
 	public $horario = array();
 	public $idParqueo = array();
 	public $ciclo = array();
+	public $tipo = array();
 }
 
 ?>
