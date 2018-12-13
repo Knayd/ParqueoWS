@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 
 	//Here's where the actual methods start
 
-	//User related methods=======================
+	//=======================USUARIOS=======================
 	public function agregarusuario(){
 
 		date_default_timezone_set('America/El_Salvador');
@@ -139,24 +139,7 @@ class Welcome extends CI_Controller {
 		}
 	}
 
-	//End of user related methods ==================================================
-
-	public function agregarplaca(){
-
-		date_default_timezone_set('America/El_Salvador');
-		$this->load->model('MetodosBd');
-
-		$placa = $this->input->post('placa');
-		$docente = $this->input->post('docente');
-		$horario = $this->input->post('horario');
-		$idParqueo = $this->input->post('idParqueo');
-		$ciclo = $this->input->post('ciclo');
-		$tipo = $this->input->post('tipo');
-
-		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
-
-		echo json_encode($data);
-	}
+	//==================APP===============================
 
 	public function registrar(){
 
@@ -209,17 +192,7 @@ class Welcome extends CI_Controller {
 		 	$mensaje = array('mensaje' => "La cantidad no es valida");
 		 }
 
-		// $data = $this->MetodosBd->reservar($idParqueo[0]['id_parqueo'], $motivoReservacion, $cantidadReservada);
 		echo json_encode($mensaje);
-	}
-
-	public function getparqueoslist(){
-
-		date_default_timezone_set('America/El_Salvador');
-		$this->load->model('MetodosBd');
-
-		$data = $this->MetodosBd->get_parqueos_list();
-		echo json_encode($data);
 	}
 
 	public function getregistroporplaca(){
@@ -242,6 +215,8 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->get_niveles();
 		echo json_encode($data);
 	}
+
+	//===================EDIFICIO===================
 
 	public function crud_agregar_edificio(){
 
@@ -273,7 +248,6 @@ class Welcome extends CI_Controller {
 
 		$data = $this->MetodosBd->crud_listar_edificio();
 		echo json_encode($data);
-		//print_r(json_decode(json_encode($data),true));
 	}
 
 	public function crud_eliminar_edificio(){
@@ -285,12 +259,63 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->crud_eliminar_edificio($id);
 	}
 
+	public function get_edificio_por_nombre(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreEdificio');
+		$data = $this->MetodosBd->get_edificio_por_nombre($nombre);
+		echo json_encode($data);
+	}
+
+	//===================PARQUEO===================
+
 	public function crud_listar_parqueo(){
 
 		date_default_timezone_set('America/El_Salvador');
 		$this->load->model('MetodosBd');
 
 		$data = $this->MetodosBd->crud_listar_parqueo();
+		echo json_encode($data);
+	}
+
+	public function get_parqueo_por_nombre(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreParqueo');
+		$data = $this->MetodosBd->get_parqueo_por_nombre($nombre);
+		echo json_encode($data);
+	}
+
+
+	public function getparqueoslist(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->get_parqueos_list();
+		echo json_encode($data);
+	}
+
+	//===================PLACA===================
+
+	public function agregarplaca(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$placa = $this->input->post('placa');
+		$docente = $this->input->post('docente');
+		$horario = $this->input->post('horario');
+		$idParqueo = $this->input->post('idParqueo');
+		$ciclo = $this->input->post('ciclo');
+		$tipo = $this->input->post('tipo');
+
+		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
+
 		echo json_encode($data);
 	}
 
@@ -313,25 +338,9 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function get_edificio_por_nombre(){
 
-		date_default_timezone_set('America/El_Salvador');
-		$this->load->model('MetodosBd');
 
-		$nombre = $this->input->post('nombreEdificio');
-		$data = $this->MetodosBd->get_edificio_por_nombre($nombre);
-		echo json_encode($data);
-	}
-
-	public function get_parqueo_por_nombre(){
-
-		date_default_timezone_set('America/El_Salvador');
-		$this->load->model('MetodosBd');
-
-		$nombre = $this->input->post('nombreParqueo');
-		$data = $this->MetodosBd->get_parqueo_por_nombre($nombre);
-		echo json_encode($data);
-	}
+	//===================RESERVACIONES===================
 
 	public function crud_listar_reservacion(){
 
