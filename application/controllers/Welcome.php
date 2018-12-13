@@ -97,6 +97,48 @@ class Welcome extends CI_Controller {
 			echo json_encode($data[0]);
 		}
 	}
+
+	public function eliminarusuario(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$correo = $this->input->get('correo');
+		$pass = $this->input->get('pass');
+
+		$apiKey="AIzaSyDUkOKeyJguMLnIWYMdRdR96bYCbgOeRCo";
+
+		$url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey";
+
+		//Se inicia Curl en el servidor especificado
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,"email=$correo&password=$pass&returnSecureToken=true");
+		$response = curl_exec($ch);
+		$array = json_decode($response,true); //True convierte el json en array asociativo
+
+		if(isset($array['error'])) {
+			$data = array('correo_usuario' => "error@error.com", 'nivel_usuario' => "-1" );
+			echo json_encode($data);
+
+		} else {
+			$token = $array['idToken'];
+			$correo = $array['email'];
+
+			$url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount?key=$apiKey";
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS,"idToken=$token");
+			$response = curl_exec($ch);
+			$array = json_decode($response,true); //True convierte el json en array asociativo
+
+			$data = $this->MetodosBd->crud_eliminar_usuario_por_correo($correo);
+			echo json_encode($data);
+		}
+	}
+
 	//End of user related methods ==================================================
 
 	public function agregarplaca(){

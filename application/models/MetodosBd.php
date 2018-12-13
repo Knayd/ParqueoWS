@@ -148,5 +148,11 @@
 			return $query->result_array();
 		}
 
+		function crud_eliminar_usuario_por_correo($correo) {
+			$query = $this->db->query("DELETE from tblusuario where tblusuario.correo_usuario = '$correo'");
+			$respuesta = array('mensaje' => "Usuario eliminado");
+			return $respuesta;
+		}
+
 	}
 ?>
