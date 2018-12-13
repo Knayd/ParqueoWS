@@ -154,5 +154,10 @@
 			return $respuesta;
 		}
 
+		function crud_eliminar_parqueo($id) {
+			$query = $this->db->query("DELETE from tblparqueo where tblparqueo.id_parqueo = $id");
+			echo "Registro eliminado correctamente";
+		}
+
 	}
 ?>

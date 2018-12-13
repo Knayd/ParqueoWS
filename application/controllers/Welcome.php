@@ -170,6 +170,15 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function getparqueoslist(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->get_parqueos_list();
+		echo json_encode($data);
+	}
+
 	public function reservar(){
 
 		date_default_timezone_set('America/El_Salvador');
@@ -290,15 +299,15 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
-
-	public function getparqueoslist(){
+	public function crud_eliminar_parqueo(){
 
 		date_default_timezone_set('America/El_Salvador');
 		$this->load->model('MetodosBd');
 
-		$data = $this->MetodosBd->get_parqueos_list();
-		echo json_encode($data);
+		$id = $this->input->post('idParqueo');
+		$data = $this->MetodosBd->crud_eliminar_parqueo($id);
 	}
+
 
 	//===================PLACA===================
 
