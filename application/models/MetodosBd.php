@@ -59,7 +59,7 @@
 		}
 
 		function get_parqueos_list() {
-			$query = $this->db->query("SELECT tblparqueo.nombre_parqueo, (tblparqueo.cantidad_parqueo-IFNULL(SUM(tblreservaciones.cantidad_reservada),0)) as disponibles, IFNULL(SUM(tblreservaciones.cantidad_reservada),0) as reservados from tblparqueo LEFT join tblreservaciones on tblreservaciones.id_parqueo_fk = tblparqueo.id_parqueo GROUP by tblparqueo.nombre_parqueo");
+			$query = $this->db->query("SELECT tblparqueo.id_parqueo, tblparqueo.nombre_parqueo, (tblparqueo.cantidad_parqueo-IFNULL(SUM(tblreservaciones.cantidad_reservada),0)) as disponibles, IFNULL(SUM(tblreservaciones.cantidad_reservada),0) as reservados from tblparqueo LEFT join tblreservaciones on tblreservaciones.id_parqueo_fk = tblparqueo.id_parqueo GROUP by tblparqueo.nombre_parqueo");
 			return $query->result_array();
 		}
 
@@ -107,6 +107,7 @@
 			$query = $this->db->query("SELECT * from tbledificio");
 			return $query->result_array();
 		}
+
 		function crud_eliminar_edificio($id) {
 			$query = $this->db->query("DELETE from tbledificio where id_edificio=$id");
 			echo "Registro eliminado correctamente";
@@ -116,5 +117,16 @@
 			$query = $this->db->query("SELECT tblparqueo.id_parqueo, tblparqueo.nombre_parqueo, tblparqueo.cantidad_parqueo, tblparqueo.reservados_parqueo, tbledificio.nombre_edificio from tblparqueo INNER JOIN tbledificio on tblparqueo.id_edificio_fk = tbledificio.id_edificio");
 			return $query->result_array();
 		}
+
+		function get_edificio_por_nombre($nombre) {
+			$query = $this->db->query("SELECT * from tbledificio where nombre_edificio like '%$nombre%'");
+			return $query->result_array();
+		}
+
+		function get_parqueo_por_nombre($nombre) {
+			$query = $this->db->query("SELECT tblparqueo.id_parqueo, tblparqueo.nombre_parqueo, tblparqueo.cantidad_parqueo, tblparqueo.reservados_parqueo, tbledificio.nombre_edificio from tblparqueo INNER JOIN tbledificio on tblparqueo.id_edificio_fk = tbledificio.id_edificio where tblparqueo.nombre_parqueo like '%$nombre%'");
+			return $query->result_array();
+		}
+
 	}
 ?>

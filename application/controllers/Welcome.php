@@ -252,4 +252,25 @@ class Welcome extends CI_Controller {
 	}
 
 
+	public function get_edificio_por_nombre(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreEdificio');
+		$data = $this->MetodosBd->get_edificio_por_nombre($nombre);
+		echo json_encode($data);
+	}
+
+	public function get_parqueo_por_nombre(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreParqueo');
+		$data = $this->MetodosBd->get_parqueo_por_nombre($nombre);
+		echo json_encode($data);
+	}
+
+
 }
