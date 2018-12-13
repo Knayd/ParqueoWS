@@ -159,5 +159,10 @@
 			echo "Registro eliminado correctamente";
 		}
 
+		function crud_eliminar_placa($id) {
+			$query = $this->db->query("DELETE from tblplaca where tblplaca.id_placa = $id");
+			echo "Registro eliminado correctamente";
+		}
+
 	}
 ?>

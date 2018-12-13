@@ -347,6 +347,15 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function crud_eliminar_placa(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$id = $this->input->post('idPlaca');
+		$data = $this->MetodosBd->crud_eliminar_placa($id);
+	}
+
 
 
 	//===================RESERVACIONES===================
