@@ -164,5 +164,10 @@
 			echo "Registro eliminado correctamente";
 		}
 
+		function crud_eliminar_reservacion($id) {
+			$query = $this->db->query("DELETE from tblreservaciones where tblreservaciones.id_reservacion = $id");
+			echo "Registro eliminado correctamente";
+		}
+
 	}
 ?>
