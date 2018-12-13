@@ -127,6 +127,16 @@
 			$query = $this->db->query("SELECT tblparqueo.id_parqueo, tblparqueo.nombre_parqueo, tblparqueo.cantidad_parqueo, tblparqueo.reservados_parqueo, tbledificio.nombre_edificio from tblparqueo INNER JOIN tbledificio on tblparqueo.id_edificio_fk = tbledificio.id_edificio where tblparqueo.nombre_parqueo like '%$nombre%'");
 			return $query->result_array();
 		}
+			function get_placa_por_id($id) {
+						$query = $this->db->query("SELECT tblplaca.id_placa, tblplaca.nombre_docente, tblplaca.horario, tblplaca.ciclo_parqueo, tblplaca.tipo_docente, tbledificio.nombre_edificio from tblplaca INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblplaca.id_parqueo_fk INNER JOIN tbledificio on tbledificio.id_edificio = tblparqueo.id_edificio_fk
+							where tblplaca.id_placa LIKE '%$id%'");
+						return $query->result_array();
+			}
+
+		function crud_listar_placa() {
+			$query = $this->db->query("SELECT tblplaca.id_placa, tblplaca.nombre_docente, tblplaca.horario, tblplaca.ciclo_parqueo, tblplaca.tipo_docente, tbledificio.nombre_edificio from tblplaca INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblplaca.id_parqueo_fk INNER JOIN tbledificio on tbledificio.id_edificio = tblparqueo.id_edificio_fk");
+			return $query->result_array();
+		}
 
 	}
 ?>

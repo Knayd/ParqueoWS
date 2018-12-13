@@ -252,6 +252,24 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function crud_listar_placa(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->crud_listar_placa();
+		echo json_encode($data);
+	}
+
+	public function get_placa_por_id(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$id = $this->input->post('idPlaca');
+		$data = $this->MetodosBd->get_placa_por_id($id);
+		echo json_encode($data);
+	}
 
 	public function get_edificio_por_nombre(){
 
@@ -272,6 +290,8 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->get_parqueo_por_nombre($nombre);
 		echo json_encode($data);
 	}
+
+	
 
 
 }
