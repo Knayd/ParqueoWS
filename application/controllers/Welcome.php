@@ -139,6 +139,25 @@ class Welcome extends CI_Controller {
 		}
 	}
 
+	public function crud_listar_usuario(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->crud_listar_usuario();
+		echo json_encode($data);
+	}
+
+	public function get_usuario_por_correo(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$correo = $this->input->post('correo');
+		$data = $this->MetodosBd->get_usuario_por_correo($correo);
+		echo json_encode($data);
+	}
+
 	//==================APP===============================
 
 	public function registrar(){

@@ -142,7 +142,15 @@
 			$query = $this->db->query("SELECT tblreservaciones.id_reservacion, tblparqueo.nombre_parqueo, tblreservaciones.motivo_reservacion, tblreservaciones.cantidad_reservada from tblreservaciones INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblreservaciones.id_parqueo_fk");
 			return $query->result_array();
 		}
-
+		
+		function crud_listar_usuario() {
+						$query = $this->db->query("SELECT tblusuario.correo_usuario, tblnivel.nombre_nivel from tblusuario INNER JOIN tblnivel on tblusuario.nivel_usuario = tblnivel.id_nivel");
+						return $query->result_array();
+				}
+		function get_usuario_por_correo($correo) {
+								$query = $this->db->query("SELECT tblusuario.correo_usuario, tblnivel.nombre_nivel from tblusuario INNER JOIN tblnivel on tblusuario.nivel_usuario = tblnivel.id_nivel where tblusuario.correo_usuario like '%$correo%' ");
+								return $query->result_array();
+						}
 		function get_reservacion_por_parqueo($nombre) {
 			$query = $this->db->query("SELECT tblreservaciones.id_reservacion, tblparqueo.nombre_parqueo, tblreservaciones.motivo_reservacion, tblreservaciones.cantidad_reservada from tblreservaciones INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblreservaciones.id_parqueo_fk where tblparqueo.nombre_parqueo like '%$nombre%'");
 			return $query->result_array();
