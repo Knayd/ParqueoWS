@@ -291,6 +291,25 @@ class Welcome extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function crud_listar_reservacion(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->crud_listar_reservacion();
+		echo json_encode($data);
+	}
+
+	public function get_reservacion_por_parqueo(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreParqueo');
+		$data = $this->MetodosBd->get_reservacion_por_parqueo($nombre);
+		echo json_encode($data);
+	}
+
 	
 
 

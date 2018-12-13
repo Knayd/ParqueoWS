@@ -138,5 +138,15 @@
 			return $query->result_array();
 		}
 
+		function crud_listar_reservacion() {
+			$query = $this->db->query("SELECT tblreservaciones.id_reservacion, tblparqueo.nombre_parqueo, tblreservaciones.motivo_reservacion, tblreservaciones.cantidad_reservada from tblreservaciones INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblreservaciones.id_parqueo_fk");
+			return $query->result_array();
+		}
+
+		function get_reservacion_por_parqueo($nombre) {
+			$query = $this->db->query("SELECT tblreservaciones.id_reservacion, tblparqueo.nombre_parqueo, tblreservaciones.motivo_reservacion, tblreservaciones.cantidad_reservada from tblreservaciones INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblreservaciones.id_parqueo_fk where tblparqueo.nombre_parqueo like '%$nombre%'");
+			return $query->result_array();
+		}
+
 	}
 ?>
