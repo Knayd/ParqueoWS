@@ -242,5 +242,14 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->crud_eliminar_edificio($id);
 	}
 
+	public function crud_listar_parqueo(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$data = $this->MetodosBd->crud_listar_parqueo();
+		echo json_encode($data);
+	}
+
 
 }

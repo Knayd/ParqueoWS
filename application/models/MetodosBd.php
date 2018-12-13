@@ -111,5 +111,10 @@
 			$query = $this->db->query("DELETE from tbledificio where id_edificio=$id");
 			echo "Registro eliminado correctamente";
 		}
+
+		function crud_listar_parqueo() {
+			$query = $this->db->query("SELECT tblparqueo.id_parqueo, tblparqueo.nombre_parqueo, tblparqueo.cantidad_parqueo, tblparqueo.reservados_parqueo, tbledificio.nombre_edificio from tblparqueo INNER JOIN tbledificio on tblparqueo.id_edificio_fk = tbledificio.id_edificio");
+			return $query->result_array();
+		}
 	}
 ?>
