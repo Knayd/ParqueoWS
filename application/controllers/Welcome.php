@@ -261,7 +261,6 @@ class Welcome extends CI_Controller {
 		$id = $this->input->post('idEdificio');
 		$nombre = $this->input->post('txtNombreEdificio');
 		$nombreCorto = $this->input->post('txtNombreCortoEdificio');
-
 		$data = $this->MetodosBd->crud_actualizar_edificio($id,$nombre, $nombreCorto);
 	}
 
