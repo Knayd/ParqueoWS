@@ -300,7 +300,7 @@ class Welcome extends CI_Controller {
 		date_default_timezone_set('America/El_Salvador');
 		$this->load->model('MetodosBd');
 
-		$nombre = $this->input->post('nombreEdificio');
+		$nombre = $this->input->post('nombreParqueo');
 		$cantidad = $this->input->post('cantidad');
 		$reservados = $this->input->post('reservados');
 		$idEdificio = $this->input->post('idEdificio');
@@ -370,6 +370,23 @@ class Welcome extends CI_Controller {
 		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
 
 		echo json_encode($data);
+	}
+
+	public function crud_actualizar_placa(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$placa = $this->input->post('placa');
+		$docente = $this->input->post('docente');
+		$horario = $this->input->post('horario');
+		$idParqueo = $this->input->post('idParqueo');
+		$ciclo = $this->input->post('ciclo');
+		$tipo = $this->input->post('tipo');
+
+		$data = $this->MetodosBd->crud_actualizar_placa($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
+
+		// echo json_encode($data);
 	}
 
 	public function crud_listar_placa(){

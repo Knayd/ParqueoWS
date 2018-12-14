@@ -18,6 +18,10 @@
 		function insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo) {
 			$query = $this->db->query("INSERT into tblplaca values ('$placa','$docente', '$horario',$idParqueo,'$ciclo','$tipo')");
 		}
+
+		function crud_actualizar_placa($placa,$docente,$horario,$idParqueo,$ciclo,$tipo) {
+			$query = $this->db->query("UPDATE tblplaca as pl set pl.nombre_docente = '$docente', pl.horario='$horario', pl.id_parqueo_fk=$idParqueo, pl.ciclo_parqueo='$ciclo', pl.tipo_docente='$tipo' WHERE pl.id_placa = '$placa' ");
+		}
 		function registrar_parqueo($placa,$fecha,$hora,$idParqueo,$comentario,$tipo) {
 
 			$check = $this->db->query("SELECT * from tblplaca where id_placa = '$placa'");
