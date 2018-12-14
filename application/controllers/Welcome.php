@@ -65,11 +65,6 @@ class Welcome extends CI_Controller {
 		date_default_timezone_set('America/El_Salvador');
 		$this->load->model('MetodosBd');
 
-		// $json = json_decode(file_get_contents('php://input'), true);
-
-		// $correo = $json['correo'];
-		// $pass = $json['pass'];
-
 		$correo = $this->input->get('correo');
 		$pass = $this->input->get('pass');
 
@@ -94,6 +89,7 @@ class Welcome extends CI_Controller {
 		} else {
 			$correo = $array['email'];
 			$data = $this->MetodosBd->get_usuario_by_email($correo);
+			// print_r($data);
 			echo json_encode($data[0]);
 		}
 	}
