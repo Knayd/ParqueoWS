@@ -369,7 +369,7 @@ class Welcome extends CI_Controller {
 
 		$data = $this->MetodosBd->insertar_datos_archivo($placa,$docente,$horario,$idParqueo,$ciclo,$tipo);
 
-		echo json_encode($data);
+		// echo json_encode($data);
 	}
 
 	public function crud_actualizar_placa(){
