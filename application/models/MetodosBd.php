@@ -69,7 +69,7 @@
 		}
 
 		function get_registro_by_placa($placa) {
-			$query = $this->db->query("SELECT tblregistroparqueo.num_placa, tblregistroparqueo.hora_registro, tblregistroparqueo.fecha_registro, tblparqueo.nombre_parqueo from tblregistroparqueo INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblregistroparqueo.id_parqueo_fk where tblregistroparqueo.num_placa = '$placa' ");
+			$query = $this->db->query("SELECT tblregistroparqueo.num_placa, tblregistroparqueo.hora_registro, tblregistroparqueo.fecha_registro, tblparqueo.nombre_parqueo, tblregistroparqueo.tipo_registro from tblregistroparqueo INNER JOIN tblparqueo on tblparqueo.id_parqueo = tblregistroparqueo.id_parqueo_fk where tblregistroparqueo.num_placa = '$placa' ");
 			return $query->result_array();
 		}
 
@@ -99,7 +99,15 @@
 
 		function crud_agregar_edificio($nombreEdificio, $nombreCortoEdificio) {
 			$query = $this->db->query("INSERT into tbledificio values (NULL, '$nombreEdificio', '$nombreCortoEdificio' )");
-			echo "Registro ingresado correctamente";
+			// echo "Registro ingresado correctamente";
+			echo '
+			<div class="alert alert-info text-center"><strong>Registros actualizados</strong></div>
+			<button onclick="goBack()">Regresar</button>
+			<script>
+			function goBack() {
+			    window.history.go(-2);
+			}
+			</script>';
 		}
 		function crud_agregar_parqueo($nombre, $cantidad, $reservados, $idEdificio) {
 					$query = $this->db->query("INSERT into tblparqueo values (NULL, '$nombre', $cantidad, $reservados, $idEdificio)");

@@ -115,7 +115,7 @@ class Welcome extends CI_Controller {
 		$array = json_decode($response,true); //True convierte el json en array asociativo
 
 		if(isset($array['error'])) {
-			$data = array('correo_usuario' => "error@error.com", 'nivel_usuario' => "-1" );
+			$data = array('mensaje' => "Credenciales incorrectas");
 			echo json_encode($data);
 
 		} else {
@@ -131,6 +131,8 @@ class Welcome extends CI_Controller {
 			$array = json_decode($response,true); //True convierte el json en array asociativo
 
 			$data = $this->MetodosBd->crud_eliminar_usuario_por_correo($correo);
+
+			$mensaje = array('mensaje' => "Usuario eliminado");
 			echo json_encode($data);
 		}
 	}
@@ -447,8 +449,5 @@ class Welcome extends CI_Controller {
 		$id = $this->input->post('idReservacion');
 		$data = $this->MetodosBd->crud_eliminar_reservacion($id);
 	}
-
-	
-
 
 }
