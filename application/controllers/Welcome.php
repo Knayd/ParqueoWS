@@ -295,6 +295,35 @@ class Welcome extends CI_Controller {
 
 	//===================PARQUEO===================
 
+	public function crud_agregar_parqueo(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$nombre = $this->input->post('nombreEdificio');
+		$cantidad = $this->input->post('cantidad');
+		$reservados = $this->input->post('reservados');
+		$idEdificio = $this->input->post('idEdificio');
+
+		$data = $this->MetodosBd->crud_agregar_parqueo($nombre,$cantidad,$reservados,$idEdificio);
+		// echo json_encode($data);
+	}
+
+	public function crud_actualizar_parqueo(){
+
+		date_default_timezone_set('America/El_Salvador');
+		$this->load->model('MetodosBd');
+
+		$id = $this->input->post('idParqueo');
+		$nombre = $this->input->post('nombreEdificio');
+		$cantidad = $this->input->post('cantidad');
+		$reservados = $this->input->post('reservados');
+		$idEdificio = $this->input->post('idEdificio');
+
+		$data = $this->MetodosBd->crud_actualizar_parqueo($id,$nombre,$cantidad,$reservados,$idEdificio);
+		// echo json_encode($data);
+	}
+
 	public function crud_listar_parqueo(){
 
 		date_default_timezone_set('America/El_Salvador');
