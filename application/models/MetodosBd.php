@@ -101,26 +101,27 @@
 			$query = $this->db->query("INSERT into tbledificio values (NULL, '$nombreEdificio', '$nombreCortoEdificio' )");
 			// echo "Registro ingresado correctamente";
 			echo '
-			<div class="alert alert-info text-center"><strong>Registros actualizados</strong></div>
-			<button onclick="goBack()">Regresar</button>
-			<script>
-			function goBack() {
-			    window.history.go(-2);
-			}
-			</script>';
+			<div class="alert alert-info text-center">Registro agregado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 		function crud_agregar_parqueo($nombre, $cantidad, $reservados, $idEdificio) {
 					$query = $this->db->query("INSERT into tblparqueo values (NULL, '$nombre', $cantidad, $reservados, $idEdificio)");
-					echo "Registro ingresado correctamente";
+					echo '
+			<div class="alert alert-info text-center">Registro agregado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 		function crud_actualizar_parqueo($id,$nombre, $cantidad, $reservados, $idEdificio) {
 							$query = $this->db->query("UPDATE tblparqueo as p set p.nombre_parqueo = '$nombre', p.cantidad_parqueo = $cantidad, p.reservados_parqueo = $reservados, p.id_edificio_fk = $idEdificio where p.id_parqueo = $id");
-							echo "Registro ingresado correctamente";
+							echo '
+			<div class="alert alert-info text-center">Registro actualizado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 				}
 		function crud_actualizar_edificio($id,$nombreEdificio, $nombreCortoEdificio) {
 			$query = $this->db->query("UPDATE tbledificio set  nombre_edificio='$nombreEdificio', nombre_corto_edificio='$nombreCortoEdificio' where id_edificio=$id ");
 
-			echo "Registro actualizado correctamente";
+			echo '
+			<div class="alert alert-info text-center">Registro actualizado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 
 		function crud_listar_edificio() {
@@ -130,7 +131,9 @@
 
 		function crud_eliminar_edificio($id) {
 			$query = $this->db->query("DELETE from tbledificio where id_edificio=$id");
-			echo "Registro eliminado correctamente";
+			echo '
+			<div class="alert alert-info text-center">Registro eliminado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 
 		function crud_listar_parqueo() {
@@ -184,17 +187,23 @@
 
 		function crud_eliminar_parqueo($id) {
 			$query = $this->db->query("DELETE from tblparqueo where tblparqueo.id_parqueo = $id");
-			echo "Registro eliminado correctamente";
+			echo '
+			<div class="alert alert-info text-center">Registro eliminado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 
 		function crud_eliminar_placa($id) {
 			$query = $this->db->query("DELETE from tblplaca where tblplaca.id_placa = $id");
-			echo "Registro eliminado correctamente";
+			echo '
+			<div class="alert alert-info text-center">Registro eliminado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 
 		function crud_eliminar_reservacion($id) {
 			$query = $this->db->query("DELETE from tblreservaciones where tblreservaciones.id_reservacion = $id");
-			echo "Registro eliminado correctamente";
+			echo '
+			<div class="alert alert-info text-center">Registro eliminado correctamente.
+			<br><strong><a href="#" onclick="window.history.back();">Clic aqui para volver</a></strong></div>';
 		}
 
 	}
