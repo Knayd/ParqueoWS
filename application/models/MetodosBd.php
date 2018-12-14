@@ -21,6 +21,7 @@
 
 		function crud_actualizar_placa($placa,$docente,$horario,$idParqueo,$ciclo,$tipo) {
 			$query = $this->db->query("UPDATE tblplaca as pl set pl.nombre_docente = '$docente', pl.horario='$horario', pl.id_parqueo_fk=$idParqueo, pl.ciclo_parqueo='$ciclo', pl.tipo_docente='$tipo' WHERE pl.id_placa = '$placa' ");
+			echo "Registro actualizado correctamente";
 		}
 		function registrar_parqueo($placa,$fecha,$hora,$idParqueo,$comentario,$tipo) {
 
