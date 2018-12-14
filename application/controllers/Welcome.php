@@ -315,7 +315,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('MetodosBd');
 
 		$id = $this->input->post('idParqueo');
-		$nombre = $this->input->post('nombreEdificio');
+		$nombre = $this->input->post('nombreParqueo');
 		$cantidad = $this->input->post('cantidad');
 		$reservados = $this->input->post('reservados');
 		$idEdificio = $this->input->post('idEdificio');
